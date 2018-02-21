@@ -1,3 +1,10 @@
-<p>
+<p *ngIf="!edit; else editMode">
   {{content.body}}
 </p>
+<ng-template #editMode>
+  <textarea class="form-control" rows="5" [value]="content.body"></textarea>
+</ng-template>
+
+<button type="button" class="btn btn-light btn-edit btn-sm" (click)="toggleEditMode()">
+  <i class="far fa-edit"></i>
+</button>

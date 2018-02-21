@@ -14,8 +14,13 @@ interface Block {
 })
 export class ContentBlockComponent implements OnInit {
   @Input() content: Block;
+  edit = false;
 
   constructor() {}
 
   ngOnInit() {}
+
+  toggleEditMode() {
+    this.edit = !this.edit;
+  }
 }
