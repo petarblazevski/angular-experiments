@@ -1,0 +1,19 @@
+:host {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+
+  width: 70px;
+  padding: 30px 10px 10px;
+  border-radius: 4px;
+
+  background: #fff;
+  box-shadow: 0 4px 6px 0 hsla(0, 0%, 0%, 0.2);
+}
+
+.content-type {
+  padding: 5px;
+
+  text-align: center;
+  font-size: 22px;
+}

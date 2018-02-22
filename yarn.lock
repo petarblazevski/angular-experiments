@@ -335,6 +335,10 @@ amqplib@^0.5.2:
     readable-stream "1.x >=1.1.9"
     safe-buffer "^5.0.1"
 
+angular2-draggable@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/angular2-draggable/-/angular2-draggable-1.2.1.tgz#015244bc93f49f39695dc631b976d7d6dc3e4e20"
+
 ansi-html@0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/ansi-html/-/ansi-html-0.0.7.tgz#813584021962a9e9e6fd039f940d12f56ca7859e"
