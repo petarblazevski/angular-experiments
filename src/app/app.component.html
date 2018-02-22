@@ -13,7 +13,7 @@
   <div class="container">
     <h1>My Case</h1>
 
-    <div class="draggable" [dragula]='"first-bag"' [dragulaModel]='blocks'>
+    <div class="draggable" [dragula]='"content"' [dragulaModel]='blocks'>
       <app-content-block *ngFor="let block of blocks" [content]="block"></app-content-block>
     </div>
 

@@ -12,10 +12,42 @@ export class AppComponent {
   title = 'app';
   blocks = data;
 
-  constructor(private dragService: DragulaService) {
-    dragService.drop.subscribe(value => {
-      console.log(`drop:`, value);
-      console.log(value.slice(1));
+  constructor(private dragulaService: DragulaService) {
+    dragulaService.setOptions('content', {
+      copy: function(el, source) {
+        return el.className === 'content-type';
+      },
+      copySortSource: false
     });
+
+    dragulaService.drop.subscribe(value => {
+      const [e, container, source, target] = value.slice(1);
+
+      console.log(e);
+      if (e.className.includes('content-type')) {
+        const index = this.getElementIndex(target);
+        this.dragulaService.find('content').drake.cancel(true);
+
+        if (!target) {
+          data.push({
+            name: 'Test',
+            type: 'text',
+            order: 10,
+            body: 'Text'
+          });
+        } else {
+          data.splice(index - 1, 0, {
+            name: 'Test',
+            type: 'text',
+            order: 10,
+            body: 'Text'
+          });
+        }
+      }
+    });
+  }
+
+  private getElementIndex(el: HTMLElement): number {
+    return [].slice.call(el.parentElement.children).indexOf(el);
   }
 }
