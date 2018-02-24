@@ -23,7 +23,9 @@ export class AppComponent {
     dragulaService.drop.subscribe(value => {
       const [e, container, source, target] = value.slice(1);
 
-      if (e.className.includes('content-type')) {
+      console.log(value.slice(1));
+
+      if (e.className.includes('content-type') && container) {
         const index = this.getElementIndex(target);
         // TODO: Currently there is a bug when you drop an item from the toolbox
         this.dragulaService.find('content').drake.cancel(true);
