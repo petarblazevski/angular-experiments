@@ -1,9 +1,20 @@
-<p *ngIf="!edit; else editMode">
-  {{content.body}}
-</p>
-<ng-template #editMode>
-  <textarea class="form-control" rows="5" [value]="content.body"></textarea>
-</ng-template>
+<div [ngSwitch]="content.type">
+  <div *ngSwitchCase="'text'">
+    <p *ngIf="!edit; else editMode">
+      {{content.body}}
+    </p>
+    <ng-template #editMode>
+      <textarea class="form-control" rows="5" [value]="content.body"></textarea>
+    </ng-template>
+  </div>
+
+  <div *ngSwitchCase="'image'">
+    <img src="https://placehold.it/150" alt="" *ngIf="!edit; else editMode">
+    <ng-template #editMode>
+      <p>Not Yet Implemented</p>
+    </ng-template>
+  </div>
+</div>
 
 <button type="button" class="btn btn-light btn-edit btn-sm" (click)="toggleEditMode()">
   <i class="far fa-edit"></i>

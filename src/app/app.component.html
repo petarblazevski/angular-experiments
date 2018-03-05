@@ -17,7 +17,7 @@
       <app-content-block *ngFor="let block of blocks" [content]="block"></app-content-block>
     </div>
 
-    <app-content-toolbox ngDraggable [handle]="dragHandle">
+    <app-content-toolbox ngDraggable [handle]="dragHandle" [blocks]="blocks">
       <div #dragHandle class="drag-handle"></div>
     </app-content-toolbox>
   </div>

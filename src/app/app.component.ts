@@ -1,7 +1,22 @@
 import { Component } from '@angular/core';
 
 import { data } from './content_data';
-import { DragulaService } from 'ng2-dragula';
+import { DragulaService, dragula } from 'ng2-dragula';
+import { TextContentType } from './text-content-type';
+import { BaseContentType } from './base-content-type';
+import { ImageContentType } from './image-content-type';
+
+enum ContentType {
+  TEXT = 'text',
+  IMAGE = 'image'
+}
+
+interface ContentBlock {
+  name: string;
+  type: string;
+  order: number;
+  body: string;
+}
 
 @Component({
   selector: 'app-root',
@@ -10,7 +25,10 @@ import { DragulaService } from 'ng2-dragula';
 })
 export class AppComponent {
   title = 'app';
-  blocks = data;
+  blocks: ContentBlock[] = data;
+  elIndex = null;
+  isDropped = false;
+  droppedContentType: ContentType = null;
 
   constructor(private dragulaService: DragulaService) {
     dragulaService.setOptions('content', {
@@ -23,28 +41,36 @@ export class AppComponent {
     dragulaService.drop.subscribe(value => {
       const [e, container, source, target] = value.slice(1);
 
-      console.log(value.slice(1));
-
       if (e.className.includes('content-type') && container) {
-        const index = this.getElementIndex(target);
-        // TODO: Currently there is a bug when you drop an item from the toolbox
-        this.dragulaService.find('content').drake.cancel(true);
+        this.elIndex = this.getElementIndex(target);
+        this.isDropped = true;
+        this.droppedContentType = e.dataset['contentType'];
+      }
+    });
 
-        if (!target) {
-          data.push({
-            name: 'Test',
-            type: 'text',
-            order: 10,
-            body: 'Text'
-          });
-        } else {
-          data.splice(index - 1, 0, {
-            name: 'Test',
-            type: 'text',
-            order: 10,
-            body: 'Text'
-          });
+    dragulaService.dropModel.subscribe(value => {
+      if (this.isDropped) {
+        let contentType: BaseContentType;
+
+        switch (this.droppedContentType) {
+          case ContentType.TEXT: {
+            contentType = new TextContentType();
+            break;
+          }
+
+          case ContentType.IMAGE: {
+            contentType = new ImageContentType();
+            break;
+          }
         }
+
+        try {
+          this.blocks[this.elIndex - 1] = <ContentBlock>contentType.toObject();
+        } catch (e) {
+          console.error(e);
+        }
+
+        this.isDropped = false;
       }
     });
   }

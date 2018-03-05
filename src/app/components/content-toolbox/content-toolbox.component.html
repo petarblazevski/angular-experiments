@@ -1,9 +1,9 @@
 <ng-content></ng-content>
-<div [dragula]='"content"'>
-  <div class="content-type">
+<div [dragula]='"content"' [dragulaModel]='blocks'>
+  <div class="content-type" data-content-type="text">
     <i class="fas fa-font"></i>
   </div>
-  <div class="content-type">
-    <i class="fas fa-align-left"></i>
+  <div class="content-type" data-content-type="image">
+    <i class="fas fa-image"></i>
   </div>
 </div>

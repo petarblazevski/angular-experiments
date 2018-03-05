@@ -6,6 +6,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./content-toolbox.component.scss']
 })
 export class ContentToolboxComponent implements OnInit {
+  @Input() blocks: any;
   constructor() {}
 
   ngOnInit() {}
