@@ -7,6 +7,7 @@ import {AngularDraggableModule} from 'angular2-draggable';
 import {AppComponent} from './app.component';
 import * as fromComponents from './components';
 import * as fromContainers from './containers';
+import { CkeditorDirective } from './directives/ckeditor.directive';
 
 
 const ROUTES: Routes = [
@@ -25,7 +26,7 @@ const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, ...fromComponents.components, ...fromContainers.containers],
+  declarations: [AppComponent, ...fromComponents.components, ...fromContainers.containers, CkeditorDirective],
   imports: [BrowserModule, DragulaModule, AngularDraggableModule, RouterModule.forRoot(ROUTES)],
   providers: [],
   bootstrap: [AppComponent]

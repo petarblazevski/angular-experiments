@@ -20,7 +20,9 @@
         "../node_modules/dragula/dist/dragula.css",
         "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/@ckeditor/ckeditor5-build-classic/build/ckeditor.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
