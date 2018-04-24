@@ -1,0 +1,21 @@
+main {
+  position: relative;
+}
+
+.drag-handle {
+  position: absolute;
+  transform: translateX(-50%) rotate(90deg);
+  left: 50%;
+  top: -15px;
+
+  width: 40px;
+  height: 70px;
+  display: block;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+
+  background: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='44' fill='%23999'%3E%3Ccircle cx='7' cy='13' r='2'/%3E%3Ccircle cx='17' cy='13' r='2'/%3E%3Ccircle cx='7' cy='22' r='2'/%3E%3Ccircle cx='17' cy='22' r='2'/%3E%3Ccircle cx='7' cy='31' r='2'/%3E%3Ccircle cx='17' cy='31' r='2'/%3E%3C/svg%3E")
+  50% no-repeat;
+
+  cursor: move;
+}
