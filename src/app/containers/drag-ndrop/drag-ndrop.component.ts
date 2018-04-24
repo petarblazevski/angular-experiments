@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { DragulaService, dragula } from 'ng2-dragula';
 
 import { data } from '../../content_data';
@@ -18,27 +18,28 @@ interface ContentBlock {
   body: string;
 }
 
-
 @Component({
   selector: 'app-drag-ndrop',
   templateUrl: './drag-ndrop.component.html',
   styleUrls: ['./drag-ndrop.component.scss']
 })
-export class DragNdropComponent implements OnInit {
+export class DragNdropComponent implements OnInit, OnDestroy {
   blocks: ContentBlock[] = data;
   elIndex = null;
   isDropped = false;
   droppedContentType: ContentType = null;
 
-  constructor(private dragulaService: DragulaService) {
-    dragulaService.setOptions('content', {
+  constructor(private dragulaService: DragulaService) {}
+
+  ngOnInit() {
+    this.dragulaService.setOptions('content', {
       copy: function(el, source) {
         return el.className === 'content-type';
       },
       copySortSource: false
     });
 
-    dragulaService.drop.subscribe(value => {
+    this.dragulaService.drop.subscribe(value => {
       const [e, container, source, target] = value.slice(1);
 
       if (e.className.includes('content-type') && container) {
@@ -48,7 +49,7 @@ export class DragNdropComponent implements OnInit {
       }
     });
 
-    dragulaService.dropModel.subscribe(value => {
+    this.dragulaService.dropModel.subscribe(value => {
       if (this.isDropped) {
         let contentType: BaseContentType;
 
@@ -75,7 +76,8 @@ export class DragNdropComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  ngOnDestroy() {
+    this.dragulaService.destroy('content');
   }
 
   private getElementIndex(el: HTMLElement): number {
