@@ -1,25 +1,2 @@
 <app-header></app-header>
-<main role="main">
-
-  <div class="jumbotron">
-    <div class="container">
-      <h1 class="display-3">Drag and Drop testing</h1>
-      <p>
-        Experimenting with drag-n-drop functionality with Angular 5
-      </p>
-    </div>
-  </div>
-
-  <div class="container">
-    <h1>My Case</h1>
-
-    <div [dragula]='"content"' [dragulaModel]='blocks'>
-      <app-content-block *ngFor="let block of blocks" [content]="block"></app-content-block>
-    </div>
-
-    <app-content-toolbox ngDraggable [handle]="dragHandle" [blocks]="blocks">
-      <div #dragHandle class="drag-handle"></div>
-    </app-content-toolbox>
-  </div>
-
-</main>
+<router-outlet></router-outlet>
