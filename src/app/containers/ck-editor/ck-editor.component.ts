@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ck-editor.component.scss']
 })
 export class CkEditorComponent implements OnInit {
+  data = '<h1>Hello World</h1>';
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onChange(data) {
+    console.log('change:::', data);
   }
 
 }

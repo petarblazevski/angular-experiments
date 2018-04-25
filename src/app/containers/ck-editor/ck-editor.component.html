@@ -10,7 +10,7 @@
   </div>
 
   <div class="container">
-    <textarea class="form-control" rows="5" appCkeditor></textarea>
+    <textarea class="form-control" rows="5" appCkeditor [data]="data" (change)="onChange($event)"></textarea>
   </div>
 
 </main>
