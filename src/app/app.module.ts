@@ -9,6 +9,7 @@ import * as fromComponents from './components';
 import * as fromContainers from './containers';
 import { CkeditorDirective } from './directives/ckeditor.directive';
 import {FormsModule} from '@angular/forms';
+import {CKEditorModule} from 'ng2-ckeditor';
 
 
 const ROUTES: Routes = [
@@ -28,7 +29,7 @@ const ROUTES: Routes = [
 
 @NgModule({
   declarations: [AppComponent, ...fromComponents.components, ...fromContainers.containers, CkeditorDirective],
-  imports: [BrowserModule, DragulaModule, AngularDraggableModule, RouterModule.forRoot(ROUTES), FormsModule],
+  imports: [BrowserModule, DragulaModule, AngularDraggableModule, RouterModule.forRoot(ROUTES), FormsModule, CKEditorModule],
   providers: [],
   bootstrap: [AppComponent]
 })
